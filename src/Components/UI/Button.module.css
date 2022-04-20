@@ -1,0 +1,21 @@
+.button_regular {
+    color:red;
+}
+
+.button_regular_hover1:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+.playOrPause {
+    background: salmon;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

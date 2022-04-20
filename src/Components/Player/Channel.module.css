@@ -1,0 +1,55 @@
+.audio_player {
+    display: flex;
+    width: 70%;
+}
+
+
+/*.time_bar {*/
+/*    height: 0.8rem;*/
+/*    border: 1px solid purple;*/
+/*    color: red;*/
+/*}*/
+
+.time_bar {
+    --time_progess: 0;
+    appearance: none;
+    background: salmon;
+    width: 100%;
+    position: relative;
+    border-radius: 30px;
+    height: 3rem;
+    z-index: 1;
+    outline: none;
+}
+.time_bar::before{
+    content:'';
+    height: 3rem;
+    /*width: var(--time_progess);*/
+    width: 200px;
+    background-color: purple;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.time_bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 3rem;
+    width: 2px;
+    border-radius: 15%;
+    border: none;
+    background-color: #da0101;
+    cursor: pointer;
+    position: relative;
+    margin: -2px 0 0 0;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+.time_bar:active::-webkit-slider-thumb{
+    width: 4px;
+    background: #9fa801;
+}
