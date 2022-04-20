@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ReactAudioLooper/static/css/main.3651bc75.css",
+    "main.js": "/ReactAudioLooper/static/js/main.fafa826a.js",
+    "static/js/787.0c97fff5.chunk.js": "/ReactAudioLooper/static/js/787.0c97fff5.chunk.js",
+    "static/media/DRUMS.mp3": "/ReactAudioLooper/static/media/DRUMS.f0332952662d2e1f5d15.mp3",
+    "static/media/178816.jpg": "/ReactAudioLooper/static/media/178816.3225c10efd68d7e5f4b4.jpg",
+    "index.html": "/ReactAudioLooper/index.html",
+    "main.3651bc75.css.map": "/ReactAudioLooper/static/css/main.3651bc75.css.map",
+    "main.fafa826a.js.map": "/ReactAudioLooper/static/js/main.fafa826a.js.map",
+    "787.0c97fff5.chunk.js.map": "/ReactAudioLooper/static/js/787.0c97fff5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3651bc75.css",
+    "static/js/main.fafa826a.js"
+  ]
+}
