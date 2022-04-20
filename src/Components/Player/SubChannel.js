@@ -5,74 +5,94 @@ import {FaVolumeMute} from "react-icons/fa"
 import {FaVolumeUp} from "react-icons/fa"
 import Button from "../UI/Button";
 
-function SubChannel (props, ref){
+function SubChannel(props, ref) {
     const audio = new Audio(props.file)
     audio.load()
     audio.preload = 'metadata'
+    const [isMute, setIsMute] = useState(false)
+    const [isLoop, setIsLoop] = useState(false)
 
 
-    // const [currentPlayingTime, setCurrentPlayingTime] = useState(0)
-    let currentPlayingTime = props.currentTime
-    const setCurrentPlayingTime = (value) => {
-        currentPlayingTime = value;
-    }
-    // const [duration, setDuration] = useState(audio.duration)
-    const [isMute, setIsMute] = useState(props.isMute)
     let isOn = props.isOn
+    let masterMute = props.masterMute
+    let masterLoop = props.masterLoop
 
     const timeBar = useRef();
-    const audioPlayer = useRef();
-    const animate = useRef();
-
     useEffect(() => {
         playing()
-        whilePlaying()
-        // setCurrentPlayingTime(props.currentTime)
-        timeBar.current.step = 0.0001
-        timeBar.current.max = ref.current.duration
-    }, [props.currentTime, isOn, ref?.current?.loadedMetadata])
+    }, [masterMute, masterLoop])
 
     const playing = () => {
-         if (isOn) {
+        if (isOn) {
             ref.current.play();
-            animate.current = requestAnimationFrame(whilePlaying)
-            // audioPlayer.current.currentTime = currentPlayingTime
         } else if (!isOn) {
             ref.current.pause()
-            cancelAnimationFrame(animate.current)
         }
-    }
-    const whilePlaying = () => {
-        timeBar.current.value = props.currentTime;
-        time2Handler()
-        animate.current = requestAnimationFrame(whilePlaying)
+        if (masterMute) {
+            setIsMute(true)
+        } else if (!masterMute) {
+            setIsMute(false)
+        }
+        if (masterLoop) {
+            setIsLoop(true)
+        } else if (!masterLoop) {
+            setIsLoop(false)
+        }
     }
     const timeHandler = () => {
         ref.current.currentTime = timeBar.current.value;
-        time2Handler()
     }
-    const time2Handler = () => {
-        timeBar.current.style.setProperty('--time_progress', `${((ref.current.currentTime / ref.current.duration) * 100).toString() + '%'}`)
-        // setCurrentPlayingTime(timeBar.current.value)
-        setCurrentPlayingTime(timeBar.current.value)
-    }
+
     const muteHandler = () => {
         setIsMute(!isMute)
     }
+
+    const volumeHandler = (event) => {
+        ref.current.volume = event.target.value
+
+    }
     return (
-        <Container className={'channel'}>
-            {isMute ? <Button onClick={muteHandler}><FaVolumeMute/> </Button> :
-                <Button onClick={muteHandler}><FaVolumeUp/> </Button>}
-            <audio preload='auto' loop={true} muted={isMute} ref={ref} src={props.file}/>
-            <div>current time: {currentPlayingTime}</div>
-            <div>progress bar</div>
-            <div><input className={styles.time_bar} type='range' defaultValue='0' ref={timeBar}
-                        onChange={timeHandler}/></div>
-            {/*{duration > 0 ? <div> duration: {duration}</div> : <div> duration: 0</div>}*/}
-        </Container>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+            <Button
+                onClick={muteHandler}
+                className={'mute'}
+                style={isMute}
+            >
+                {isMute ? <FaVolumeMute/> : <FaVolumeUp/>}
+            </Button>
+            <input className={styles.volume}
+                   type='range'
+                   defaultValue='1'
+                   min='0'
+                   max='1'
+                   step='0.1'
+                   onChange={volumeHandler}
+            />
+            <Container className={'channel'}>
+
+                <audio preload='auto' loop={isLoop} muted={isMute} ref={ref} src={props.file.file}/>
+                <div style={{width: '100%'}}>
+                    <div style={{
+                        position: 'absolute',
+                        zIndex: '1',
+                        paddingLeft: '7px',
+                        marginTop: '-20px',
+                        fontFamily: 'sans-serif',
+                        color: 'white',
+                        fontWeight: '10'
+                    }}>{props.file.displayName.toString()}</div>
+                    <input className={styles.time_bar}
+                           style={{
+                               backgroundColor: isMute ? 'transparent' : props.color,
+                               border: `3px solid ${props.border}`
+                           }}
+                           type='range'
+                           defaultValue='0' ref={timeBar}
+                           onChange={timeHandler}/></div>
+            </Container>
+        </div>
     )
 }
 
 const forwaredSubChannel = React.forwardRef(SubChannel)
-
 export default forwaredSubChannel;

@@ -3,53 +3,82 @@
     width: 70%;
 }
 
-
-/*.time_bar {*/
-/*    height: 0.8rem;*/
-/*    border: 1px solid purple;*/
-/*    color: red;*/
-/*}*/
-
 .time_bar {
     --time_progess: 0;
+    border: 1px black solid;
     appearance: none;
     background: salmon;
     width: 100%;
     position: relative;
-    border-radius: 30px;
-    height: 3rem;
-    z-index: 1;
+    border-radius: 10px;
+    height: 2.3rem;
+    z-index: 0;
     outline: none;
 }
-.time_bar::before{
-    content:'';
-    height: 3rem;
-    /*width: var(--time_progess);*/
-    width: 200px;
-    background-color: purple;
-    position: absolute;
-    top:0;
-    left:0;
+
+.main {
+    appearance: none;
     z-index: 2;
-    border-radius: 30px;
-    cursor: pointer;
 }
 
-.time_bar::-webkit-slider-thumb{
+.main::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 3rem;
+    height: 42.5rem;
+    transform: translateY(319px);
     width: 2px;
     border-radius: 15%;
     border: none;
-    background-color: #da0101;
+    background-color: #ffffff;
     cursor: pointer;
-    position: relative;
-    margin: -2px 0 0 0;
-    z-index: 5;
+    position: page;
+    z-index: 100;
     box-sizing: border-box;
 }
 
-.time_bar:active::-webkit-slider-thumb{
+.main::-webkit-slider-thumb:hover {
+    cursor: col-resize;
+    background-color: chartreuse;
+    z-index: 100;
+}
+
+.main::-webkit-slider-thumb:active {
+    cursor:col-resize;
+    background: #ef0101;
+    z-index: 100;
+}
+
+.time_bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    z-index: 100;
+}
+
+.main:active::-webkit-slider-thumb {
     width: 4px;
-    background: #9fa801;
+    background: #ef0101;
+    z-index: 12;
+}
+
+.volume {
+    width: 50px;
+    transform: rotate(-90deg);
+    border: 1px black solid;
+    appearance: none;
+    position: relative;
+    border-radius: 10px;
+    height: 0.3rem;
+    outline: none;
+    padding: 1px;
+    top: 45px;
+}
+
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    height: 23px;
+    width: 6px;
+    background-color: #c50808;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 5;
+    border-radius: 15%;
 }

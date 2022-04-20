@@ -1,11 +1,41 @@
 export const musicFiles = [
-    'ALL TRACK.mp3',
-    'B VOC.mp3',
-    'DRUMS.mp3',
-    'HE HE VOC.mp3',
-    'HIGH VOC.mp3',
-    'JIBRISH.mp3',
-    'LEAD 1.mp3',
-    'UUHO VOC.mp3',
-    '_tambourine_shake_higher.mp3',
+    {
+        file: 'ALL TRACK.mp3',
+        displayName: 'Master'
+    },
+    {
+        file: 'DRUMS.mp3',
+        displayName: 'Drums'
+    },
+    {
+        file: 'B VOC.mp3',
+        displayName: 'Vocal1'
+    },
+    {
+        file: 'HE HE VOC.mp3',
+        displayName: 'Vocal2'
+    },
+    {
+        file: 'HIGH VOC.mp3',
+        displayName: 'Vocal3'
+    },
+    {
+        file: 'JIBRISH.mp3',
+        displayName: 'Vocal4'
+    },
+    {
+        file: 'UUHO VOC.mp3',
+        displayName: 'Vocal5'
+    },
+    {
+        file: 'LEAD 1.mp3',
+        displayName: 'Vocal6'
+    },
+    {
+        file: '_tambourine_shake_higher.mp3',
+        displayName: 'Tambourine Shake'
+    }
 ]
+//TODO: make it an objects array with name and file, for better displaying
+
+

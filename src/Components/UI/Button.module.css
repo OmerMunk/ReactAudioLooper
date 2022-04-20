@@ -1,14 +1,14 @@
 .button_regular {
-    color:red;
+    color: red;
 }
 
-.button_regular_hover1:hover{
+.button_regular_hover1:hover {
     color: blue;
     cursor: pointer;
 }
 
-.playOrPause {
-    background: salmon;
+.mainButton {
+    background: #5210d3;
     color: black;
     border: none;
     border-radius: 50%;
@@ -18,4 +18,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 15px;
+
+}
+
+.mainButton:hover {
+    background: grey;
+    cursor: pointer ;
+    border: 5px solid black;
+}
+
+.mute {
+    background: salmon;
+    color: black;
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    border: none;
+    font-size: 30px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.mute:hover {
+    background: grey;
+    border: 5px solid black;
 }
