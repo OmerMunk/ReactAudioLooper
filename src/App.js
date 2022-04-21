@@ -2,8 +2,6 @@ import Main from "./Components/UI/Main";
 
 
 const App = () => {
-    console.log('render app')
-
     return (
         <>
             {/*Using inline-style for a one-time use element*/}
