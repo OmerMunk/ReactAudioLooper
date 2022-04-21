@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Moveo Audio Player task - Omer Munk
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+link [Moveo Audio Player - Omer Munk](http://ec2-34-227-27-8.compute-1.amazonaws.com/).
 
-## Available Scripts
+## 1.	Introduction
 
-In the project directory, you can run:
+The app I made, is a basic audio player, that plays 9 different audio layers in 9 different channels. 
 
-### `npm start`
+## 2.	Functionality
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It is possible to –
+•	 play and pause
+•	stop
+•	general mute or specific channel mute
+•	toggle on and off the loop mode
+•	toggle playing speed rate
+•	changing the volume of each channel
+•	drag and drop the cursor to certain time-stamps
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 3.	Technologies and methods used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+•	React – I used react to code the application and all it’s features, worked in a development sever, then to deploy, I ran the ‘npm run build’ command.
+•	GitHub – the project is in a remote GitHub repository.
+•	AWS – I used Amazon Web Services to deploy the app. I started a virtual server on the cloud, using EC2 service. I have an ‘ubuntu’ virtual machine, where I created a local git repository, cloned from GitHub. I installed nginx web server on my ubuntu machine, in order to handle the http request and html pages. Then, I configured the nginx files, to point the root directory to the local git repository of my project, and to know which files to handle. 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 4.	React – deep dive
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Methods I used:
+•	Functional component – I prefer using functional component over class components, I find it more readable, and a more bright way of react-coding.
+•	CSS modules – I used CSS modules in order to have a unique CSS files and classes for each component that I want. This method is used in order to make sure that CSS files will not ‘spill’ to unnecessary components.
+•	Icons – react-icons and Moveo logo.
+•	useState, useEffect, useRef – I  used ‘useState’ and ‘useEffect in order to control and determine when each component should render and effect the DOM. I used ‘useRef’ in order to control certain HTML elements in child components, from a parent component
+•	Project file structure - attached as an appendix
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## 5.	Further work needed / possible
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+•	Improve the local states changes of the channels, according to the global player states. 
+•	Improve the cursor dragging.
+•	Add tutorial modals for first use of the player
+•	Code and add a JavaScript music equalizer in the background, that react to the audio frequencies  
+•	Responsive Drum Pad Modal, using ‘OnKeyPress’, changing current time of the ‘DRUMS.mp3’ file and play it for a short time. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
