@@ -6,7 +6,7 @@ link [Moveo Audio Player - Omer Munk](http://ec2-34-227-27-8.compute-1.amazonaws
 
 The app I made, is a basic audio player, that plays 9 different audio layers in 9 different channels. 
 
-##2.	Functionality
+## Functionality
 
 It is possible to –
 •	 play and pause
@@ -18,14 +18,14 @@ It is possible to –
 •	drag and drop the cursor to certain time-stamps
 
 
-##3.	Technologies and methods used
+## Technologies and methods used
 
 •	React – I used react to code the application and all it’s features, worked in a development sever, then to deploy, I ran the ‘npm run build’ command.
 •	GitHub – the project is in a remote GitHub repository.
 •	AWS – I used Amazon Web Services to deploy the app. I started a virtual server on the cloud, using EC2 service. I have an ‘ubuntu’ virtual machine, where I created a local git repository, cloned from GitHub. I installed nginx web server on my ubuntu machine, in order to handle the http request and html pages. Then, I configured the nginx files, to point the root directory to the local git repository of my project, and to know which files to handle. 
 
 
-##4.	React – deep dive
+## React – deep dive
 
 Methods I used:
 •	Functional component – I prefer using functional component over class components, I find it more readable, and a more bright way of react-coding.
@@ -35,7 +35,7 @@ Methods I used:
 •	Project file structure - attached as an appendix
 
 
-##5.	Further work needed / possible
+## Further work needed / possible
 
 •	Improve the local states changes of the channels, according to the global player states. 
 •	Improve the cursor dragging.
