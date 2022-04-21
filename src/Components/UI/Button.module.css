@@ -1,3 +1,5 @@
+/*CSS classes for the Button Component*/
+
 .mainButton {
     color: black;
     border: none;
@@ -8,12 +10,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 15px;
+    margin: 15px 15px;
 }
 
 .mainButton:hover {
     cursor: pointer ;
     border: 5px solid black;
+    transition-duration: 0.07s;
 }
 
 .mainButton:active {
@@ -34,13 +37,15 @@
 .mute:hover {
     background: grey;
     border: 5px solid black;
+    transition-duration: 0.07s;
+
 }
 
 .mute:active {;
     font-size: 25px;
 }
 
-
+/* Handling screen size changing or smaller devices*/
 @media (max-width: 620px) {
     .mute{
         width: 43px;

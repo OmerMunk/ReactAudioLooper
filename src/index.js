@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <div className="main_background"/>
-        <div className="secondery_background"/>
+        <div className="secondary_background"/>
         <App/>
     </React.StrictMode>
 );

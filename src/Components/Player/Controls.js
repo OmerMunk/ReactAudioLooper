@@ -5,6 +5,8 @@ import {FaPause, FaPlay, FaStop, FaVolumeMute, FaVolumeUp} from "react-icons/fa"
 import {TiArrowLoop} from "react-icons/ti"
 import {CgPushRight} from "react-icons/cg"
 
+// This Component holds the main buttons of the audio player controls.
+
 const Controls = (props) => {
     const isOnSwitchHandler = () => {
         props.IsOnHandler()
@@ -27,6 +29,9 @@ const Controls = (props) => {
         props.speedHandler()
     }
     return (
+
+        // Conditioning button displays, according to certain states
+
         <Container className='center_row'>
             <Button className='mainButton' onClick={isOnSwitchHandler}>
                 {props.isOn ? <FaPause/> : <FaPlay/>}

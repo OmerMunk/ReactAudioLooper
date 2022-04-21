@@ -5,35 +5,31 @@ import {FaVolumeMute} from "react-icons/fa"
 import {FaVolumeUp} from "react-icons/fa"
 import Button from "../UI/Button";
 
+// This Component contains a sub-channel to the main channel.
+// Except the local mute, everything that happens in that component is controlled from the parent / parents
+// which makes it a kind of 'Controlled-Component'.
+
+// Every component gets a unique ref from the parent
 function SubChannel(props, ref) {
     const [isMute, setIsMute] = useState(false)
-    const [isLoop, setIsLoop] = useState(false)
-
-    let isOn = props.isOn
-    let masterMute = props.masterMute
-    let masterLoop = props.masterLoop
 
     const timeBar = useRef();
     useEffect(() => {
         playing()
-    }, [masterMute, masterLoop])
+    }, [props.masterMute, props.masterLoop])
 
     const playing = () => {
-        if (isOn) {
+        if (props.isOn) {
             ref.current.play();
-        } else if (!isOn) {
+        } else if (!props.isOn) {
             ref.current.pause()
         }
-        if (masterMute) {
+        if (props.masterMute) {
             setIsMute(true)
-        } else if (!masterMute) {
+        } else if (!props.masterMute) {
             setIsMute(false)
         }
-        if (masterLoop) {
-            setIsLoop(true)
-        } else if (!masterLoop) {
-            setIsLoop(false)
-        }
+
     }
     const timeHandler = () => {
         ref.current.currentTime = timeBar.current.value;
@@ -48,39 +44,38 @@ function SubChannel(props, ref) {
 
     }
     return (
-        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <Container className='channel_controls'>
             <Button
                 onClick={muteHandler}
                 className={'mute'}
-                style={isMute}
-            >
-                {isMute ? <FaVolumeMute/> : <FaVolumeUp/>}
+                style={isMute}>{isMute ? <FaVolumeMute/> : <FaVolumeUp/>}
             </Button>
             <input className={styles.volume}
                    type='range'
                    defaultValue='1'
                    min='0'
                    max='1'
-                   step='0.1'
+                // 1% of volume change control
+                   step='0.01'
                    onChange={volumeHandler}
             />
             <Container className={'channel'}>
-
-                <audio preload='auto' loop={isLoop} muted={isMute} ref={ref} src={props.file.file}/>
-                <div style={{width: '100%'}}>
-                    <div className={styles.text_div} >{props.file.displayName.toString()}</div>
+                {/*A 'ref' is given to the audio html element, to control it from the parent*/}
+                <audio preload='auto' loop={props.masterLoop} muted={isMute} ref={ref} src={props.file.file}/>
+                    <div className={styles.text_div}>{props.file.displayName.toString()}</div>
                     <input className={styles.time_bar}
+                           // conditional channel styling according to the mute state
                            style={{
-                               backgroundColor: isMute ? 'transparent' : props.color,
+                               background: isMute ? 'transparent' : props.color,
                                border: `3px solid ${props.border}`
                            }}
                            type='range'
                            defaultValue='0' ref={timeBar}
-                           onChange={timeHandler}/></div>
+                           onChange={timeHandler}/>
             </Container>
-        </div>
+        </Container>
     )
 }
 
-const forwaredSubChannel = React.forwardRef(SubChannel)
-export default forwaredSubChannel;
+const forwardedSubChannel = React.forwardRef(SubChannel)
+export default forwardedSubChannel;

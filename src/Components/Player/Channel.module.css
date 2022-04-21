@@ -1,5 +1,10 @@
+/*
+This is a css module with css classes to style and design the audio channels
+*/
+
 .time_bar {
     border: 1px black solid;
+    /* Getting rid of the original input range element design */
     appearance: none;
     width: 100%;
     position: relative;
@@ -9,11 +14,16 @@
     outline: none;
 }
 
+
+
 .main {
     appearance: none;
     z-index: 2;
 }
 
+/*
+Styling and slider
+ */
 .main::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 42.5rem;
@@ -85,6 +95,7 @@
     font-weight: 10;
 }
 
+/* Handling some size changes for smaller screens and displays */
 @media (max-width: 620px){
     .time_bar {
         width: 100%;
