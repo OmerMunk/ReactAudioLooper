@@ -10,9 +10,13 @@ The app I made, is a basic audio player, that plays 9 different audio layers in 
 
 It is possible to –
 •	 play and pause
+
 •	stop
+
 •	general mute or specific channel mute
+
 •	toggle on and off the loop mode
+
 •	toggle playing speed rate
 •	changing the volume of each channel
 •	drag and drop the cursor to certain time-stamps
