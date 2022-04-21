@@ -2,7 +2,7 @@
 
 link [Moveo Audio Player - Omer Munk](http://ec2-34-227-27-8.compute-1.amazonaws.com/).
 
-##1.	Introduction
+## Introduction
 
 The app I made, is a basic audio player, that plays 9 different audio layers in 9 different channels. 
 
