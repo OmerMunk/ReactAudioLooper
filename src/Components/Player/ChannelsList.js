@@ -4,19 +4,17 @@ import Container from "../UI/Container";
 import {musicFiles} from "../../Utils";
 
 const ChannelsList = (props) => {
-    let isOn = props.isOn
-    let isMute = props.isMute
-    let isLoop = props.isLoop
-    let stop = props.stop
+    console.log('render channel list')
     const main_song = musicFiles[0];
     let tracks = musicFiles.filter(track => track.file !== "ALL TRACK.mp3")
     return (
         <Container className='center_column'>
             <MasterChannel
-                isOn={isOn}
-                isMute={isMute}
-                isLoop={isLoop}
-                stop={stop}
+                isOn={props.isOn}
+                isMute={props.isMute}
+                isLoop={props.isLoop}
+                stop={props.stop}
+                speed={props.speed}
                 mainSong={main_song}
                 tracks={tracks}/>
         </Container>

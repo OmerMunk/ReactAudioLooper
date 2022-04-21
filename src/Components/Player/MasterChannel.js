@@ -11,13 +11,12 @@ import {ChannelBorderColors} from "../UI/ColorsPalette";
 const MasterChannel = (props) => {
 
     const [currentPlayingTime, setCurrentPlayingTime] = useState(0)
-
-    const [isMute, setIsMute] = useState(false)
-    const [isLoop, setIsLoop] = useState(false)
-    let isOn = props.isOn
-    let masterMute = props.isMute
-    let masterLoop = props.isLoop
-    let stop = props.stop
+    const [isMute, setIsMute] = useState(props.isMute)
+    // const [isLoop, setIsLoop] = useState(false)
+    // let isOn = props.isOn
+    // let masterMute = props.isMute
+    // let masterLoop = props.isLoop
+    // let stop = props.stop
     const timeBar = useRef();
     const audioPlayer1 = useRef();
     const audioPlayer2 = useRef();
@@ -32,32 +31,37 @@ const MasterChannel = (props) => {
     const animate = useRef();
     useEffect(() => {
         playing()
+        speedHandler()
         timeBar.current.step = 0.01
         timeBar.current.max = audioPlayer1.current.duration
-    }, [stop, masterLoop, masterMute, isOn, audioPlayer1?.current?.loadedMetadata])
+    }, [props.speed, props.stop, props.isLoop, props.isMute, props.isOn, audioPlayer1?.current?.loadedMetadata])
     const playing = () => {
-        if (isOn) {
+        if (props.isOn) {
             for (let player of players) {
                 player.current.play()
             }
             animate.current = requestAnimationFrame(whilePlaying)
-        } else if (!isOn) {
+        } else if (!props.isOn) {
             for (let player of players) {
                 player.current.pause()
             }
             cancelAnimationFrame(animate.current)
         }
-        if (masterMute) {
-            setIsMute(true)
-        } else if (!masterMute) {
-            setIsMute(false)
-        }
-        if (masterLoop) {
-            setIsLoop(true)
-        } else if (!masterLoop) {
-            setIsLoop(false)
-        }
-        if (stop) {
+
+        setIsMute(props.isMute)
+
+        // if (masterMute  ) {
+        //     setIsMute(true)
+        // } else if (!masterMute ) {
+        //     setIsMute(false)
+        // }
+
+        // if (props.isLoop) {
+        //     setIsLoop(true)
+        // } else if (!props.isLoop) {
+        //     setIsLoop(false)
+        // }
+        if (props.stop) {
             for (let player of players) {
                 player.current.load()
             }
@@ -76,42 +80,29 @@ const MasterChannel = (props) => {
         time2Handler()
     }
     const time2Handler = () => {
-        timeBar.current.style.setProperty('--time_progress', `${((audioPlayer1.current.currentTime / audioPlayer1.current.duration) * 100).toString() + '%'}`)
         setCurrentPlayingTime(timeBar.current.value)
     }
+
+    const speedHandler = () => {
+        for (let player of players) {
+            player.current.playbackRate = props.speed.value
+        }
+    }
+
     const muteHandler = () => {
         setIsMute(!isMute)
     }
     const volumeHandler = (event) => {
         audioPlayer1.current.volume = event.target.value
     }
-    const drumPadDown = (event) => {
-        if (event.key === '1') {
-            audioPlayer2.current.currentTime = 0
-            audioPlayer2.current.play()
-        } else if (event.key === '2') {
-            audioPlayer2.current.currentTime = 1.625
-            audioPlayer2.current.play()
 
-        } else if (event.key === '3') {
-            audioPlayer2.current.currentTime = 2.15
-            audioPlayer2.current.play()
-        }
-    }
-    const drumPadUp = (event) => {
-        if (event.key) {
-            for (let player of players) {
-                player.current.pause()
-            }
-        }
-    }
     const subChannels = []
     for (let i = 0; i < 8; i++) {
         subChannels.push(
             <SubChannel currentTime={currentPlayingTime}
-                        masterMute={masterMute}
-                        masterLoop={masterLoop}
-                        isOn={isOn}
+                        masterMute={props.isMute}
+                        masterLoop={props.isLoop}
+                        isOn={props.isOn}
                         file={props.tracks[i]}
                         ref={players[i + 1]}
                         color={ChannelBackgroundColors[i + 1]}
@@ -134,18 +125,10 @@ const MasterChannel = (props) => {
                        onChange={volumeHandler}
                 />
                 <Container className={'channel'}>
-                    <audio preload='auto' loop={isLoop} muted={isMute} ref={audioPlayer1} src={props.mainSong.file}/>
+                    {/*<audio preload='auto' loop={isLoop} muted={isMute} ref={audioPlayer1} src={props.mainSong.file}/>*/}
+                    <audio preload='auto' loop={props.isLoop} muted={isMute} ref={audioPlayer1} src={'ALL TRACK.mp3'}/>
                     <div>
-                        <div style={{
-                            position: 'absolute',
-                            zIndex: '3',
-                            paddingLeft: '7px',
-                            marginTop: '-20px',
-                            fontFamily: 'sans-serif',
-                            color: 'white',
-                            fontWeight: '10',
-                            '-webkit-user-select': 'none', '-webkit-touch-callout': 'none', userSelect: 'none'
-                        }}>{props.mainSong.displayName.toString()}</div>
+                        <div className={styles.text_div}>{props.mainSong.displayName.toString()}</div>
                         <input className={`${styles.time_bar} ${styles.main}`}
                                style={{
                                    backgroundColor: isMute ? 'transparent' : ChannelBackgroundColors[0],
@@ -158,7 +141,6 @@ const MasterChannel = (props) => {
                 </Container>
             </div>
             {subChannels}
-            <button onKeyPress={drumPadDown} onKeyUp={drumPadUp}>DRUM PAD</button>
         </>
     )
 }

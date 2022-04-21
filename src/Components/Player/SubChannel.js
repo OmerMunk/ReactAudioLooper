@@ -6,12 +6,8 @@ import {FaVolumeUp} from "react-icons/fa"
 import Button from "../UI/Button";
 
 function SubChannel(props, ref) {
-    const audio = new Audio(props.file)
-    audio.load()
-    audio.preload = 'metadata'
     const [isMute, setIsMute] = useState(false)
     const [isLoop, setIsLoop] = useState(false)
-
 
     let isOn = props.isOn
     let masterMute = props.masterMute
@@ -72,15 +68,7 @@ function SubChannel(props, ref) {
 
                 <audio preload='auto' loop={isLoop} muted={isMute} ref={ref} src={props.file.file}/>
                 <div style={{width: '100%'}}>
-                    <div style={{
-                        position: 'absolute',
-                        zIndex: '1',
-                        paddingLeft: '7px',
-                        marginTop: '-20px',
-                        fontFamily: 'sans-serif',
-                        color: 'white',
-                        fontWeight: '10'
-                    }}>{props.file.displayName.toString()}</div>
+                    <div className={styles.text_div} >{props.file.displayName.toString()}</div>
                     <input className={styles.time_bar}
                            style={{
                                backgroundColor: isMute ? 'transparent' : props.color,

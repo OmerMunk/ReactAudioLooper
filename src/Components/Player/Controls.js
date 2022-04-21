@@ -22,16 +22,21 @@ const Controls = (props) => {
             props.IsOnHandler(false)
         }
     }
+
+    const speedHandler = () => {
+        props.speedHandler()
+    }
     return (
         <Container className='center_row'>
             <Button className='mainButton' onClick={isOnSwitchHandler}>
                 {props.isOn ? <FaPause/> : <FaPlay/>}
             </Button>
-            <Button onClick={isMuteSwitchHandler} className={'mainButton'}>{props.isMute ? <FaVolumeMute/> :
-                <FaVolumeUp/>}</Button>
-            <Button onClick={isLoopSwitchHandler} className={'mainButton'}>{props.isLoop ? <TiArrowLoop/> :
-                <CgPushRight/>}</Button>
+            <Button onClick={isMuteSwitchHandler}
+                    className={'mainButton'}>{props.isMute ? <FaVolumeMute/> : <FaVolumeUp/>}</Button>
+            <Button onClick={isLoopSwitchHandler}
+                    className={'mainButton'}>{props.isLoop ? <TiArrowLoop/> : <CgPushRight/>}</Button>
             <Button onClick={stopHandler} className={'mainButton'}><FaStop/></Button>
+            <Button className='mainButton' onClick={speedHandler}> {props.speed.value}x </Button>
         </Container>
     )
 }

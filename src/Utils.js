@@ -36,6 +36,5 @@ export const musicFiles = [
         displayName: 'Tambourine Shake'
     }
 ]
-//TODO: make it an objects array with name and file, for better displaying
 
 

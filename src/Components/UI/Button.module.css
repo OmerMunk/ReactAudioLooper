@@ -1,35 +1,26 @@
-.button_regular {
-    color: red;
-}
-
-.button_regular_hover1:hover {
-    color: blue;
-    cursor: pointer;
-}
-
 .mainButton {
-    background: #5210d3;
     color: black;
     border: none;
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
-    font-size: 40px;
+    width: 77px;
+    height: 77px;
+    font-size: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 15px;
-
 }
 
 .mainButton:hover {
-    background: grey;
     cursor: pointer ;
     border: 5px solid black;
 }
 
+.mainButton:active {
+    font-size: 30px;
+}
+
 .mute {
-    background: salmon;
     color: black;
     width: 60px;
     height: 60px;
@@ -43,4 +34,33 @@
 .mute:hover {
     background: grey;
     border: 5px solid black;
+}
+
+.mute:active {;
+    font-size: 25px;
+}
+
+
+@media (max-width: 620px) {
+    .mute{
+        width: 43px;
+        height: 43px;
+        font-size: 20px;
+    }
+
+    .mute:active{
+        font-size: 15px;
+    }
+
+    .mainButton{
+        width: 60px;
+        height: 60px;
+        font-size: 27px;
+        margin: 2px 10px;
+    }
+
+    .mainButton:active{
+        font-size: 25px;
+    }
+
 }
